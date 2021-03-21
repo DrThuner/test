@@ -1,19 +1,21 @@
 #include <stdio.h>
-int main() {
-    char str[1000], ch;
+#include <ctype.h>
+
+int count_nonspace(const char* str)
+{
     int count = 0;
-
-    printf("Enter a string: ");
-    fgets(str, sizeof(str), stdin);
-
-    printf("Enter a character to find its frequency: ");
-    scanf("%c", &ch);
-
-    for (int i = 0; str[i] != '\0'; ++i) {
-        if (ch == str[i])
-            ++count;
+    while(*str)
+    {
+        if(!isspace(*str++))
+            count++;
     }
+    return count;
+}
 
-    printf("Frequency of %c = %d", ch, count);
-    return 0;
+int main()
+{
+    printf("Wpisz zdanie\n");
+    char input[256];
+    fgets(input, sizeof(input), stdin);
+    printf("Ilosc znakow w zdaniu: %d\n", count_nonspace(input));
 }
